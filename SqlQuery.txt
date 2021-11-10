@@ -1,0 +1,7 @@
+select b.business,  
+case when p.streetNo is null then '' else p.streetNo end as StreetNo,
+p.street,p.postcode,sum(f.Count) as TotalCount
+from Businesses b 
+left join Premises p on p.BusinessId = b.Id 
+left outer join Footfall f ON f.PremisesId = p.Id
+GROUP BY f.PremisesId
